@@ -36,4 +36,7 @@
 
     <!-- The CPU temperature divider, if needed -->
     <integer name="config_cpuTempDivider" translatable="false">1000</integer>
+    
+    <!-- Doze: duration to avoid false pickup gestures triggered by notification vibrations -->
+    <integer name="doze_pickup_vibration_threshold">400</integer>
 </resources>
