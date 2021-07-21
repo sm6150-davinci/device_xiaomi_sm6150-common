@@ -87,7 +87,7 @@ on post-fs-data
     mkdir /mnt/vendor/persist/fpc 0770 system system
 
 on boot
-    start rmt_storage
+    start vendor.rmt_storage
     start rfs_access
 
     # Set thermal mode to evaluation
