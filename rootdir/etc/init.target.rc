@@ -206,6 +206,8 @@ service vendor.hvdcp_opti /vendor/bin/hvdcp_opti
     user root
     group system wakelock
     task_profiles ServiceCapacityLow
+    capabilities BLOCK_SUSPEND WAKE_ALARM
+
 
 service vendor.remosaic_daemon /vendor/bin/remosaic_daemon
     class late_start
