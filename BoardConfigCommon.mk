@@ -94,6 +94,7 @@ BOARD_KERNEL_CMDLINE += androidboot.usbcontroller=a600000.dwc3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += loop.max_part=8
+BOARD_KERNEL_CMDLINE += cgroup_disable=pressure
 
 # Enable DTB in bootimage and set header version
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
