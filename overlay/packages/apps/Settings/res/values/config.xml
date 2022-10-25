@@ -17,4 +17,15 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Whether to show the Preference for Adaptive connectivity -->
     <bool name="config_show_adaptive_connectivity">false</bool>
+
+    <!-- Smart Charging -->
+    <bool name="config_supportSmartCharging">true</bool>
+
+    <!-- Battery Health -->
+    <bool name="config_supportBatteryHealth">true</bool>
+    <string name="config_batChargeCycle">/sys/class/power_supply/bms/cycle_count</string>
+    <string name="config_batDesCap">/sys/class/power_supply/bms/charge_full_design</string>
+    <string name="config_batCurCap">/sys/class/power_supply/bms/charge_full</string>
+
+
 </resources>
