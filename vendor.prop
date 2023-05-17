@@ -234,6 +234,17 @@ telephony.lteOnCdmaDevice=1
 # RCS
 persist.rcs.supported=1
 
+
+# Touch Hax
+touch.size.scale=1
+touch.size.bias=0
+touch.size.isSummed=0
+touch.pressure.scale=0.001
+touch.distance.calibration=none
+touch.distance.scale=0
+touch.coverage.calibration=box
+touch.gestureMode=spots
+
 # WiFi
 wifi.aware.interface=wifi-aware0
 
