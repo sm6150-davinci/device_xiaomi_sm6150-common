@@ -1,3 +1,6 @@
+# Block devices
+typeattribute system_block_device super_block_device_type;
+
 type lirc_device, dev_type;
 
 # Block devices
