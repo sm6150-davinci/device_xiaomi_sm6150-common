@@ -361,6 +361,10 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     init.recovery.qcom.rc
+    
+#Remove Packages from Build
+PRODUCT_PACKAGES += \
+    RemovePackagesDavinci  
 
 # Sensors
 PRODUCT_COPY_FILES += \
