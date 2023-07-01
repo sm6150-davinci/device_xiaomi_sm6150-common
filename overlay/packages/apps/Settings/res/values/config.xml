@@ -18,8 +18,6 @@
     <!-- Whether to show the Preference for Adaptive connectivity -->
     <bool name="config_show_adaptive_connectivity">false</bool>
 
-    <!-- Smart Charging -->
-    <bool name="config_supportSmartCharging">true</bool>
 
     <!-- Battery Health -->
     <bool name="config_supportBatteryHealth">true</bool>
