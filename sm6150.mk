@@ -122,6 +122,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI \
     SystemUIGoogle
 
+# Dex/ART optimization
+PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+USE_DEX2OAT_DEBUG := false
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.4-service \
