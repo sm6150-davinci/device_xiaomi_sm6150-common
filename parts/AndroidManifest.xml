@@ -58,7 +58,8 @@
         </activity>
 
         <activity
-            android:name=".vibrator.VibratorSettingsActivity" 
+            android:name=".vibrator.VibratorSettingsActivity"
+            android:exported="false" 
             android:label="@string/vibration_control_title"
             android:theme="@style/Theme.SubSettingsBase">
             <intent-filter>
