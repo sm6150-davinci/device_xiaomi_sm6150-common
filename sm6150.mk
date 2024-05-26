@@ -115,10 +115,6 @@ PRODUCT_COPY_FILES += \
 # MIUICamera
 $(call inherit-product-if-exists, vendor/xiaomi/miuicamera/config.mk)
 
-# Device-specific settings
-PRODUCT_PACKAGES += \
-    XiaomiParts
-
 # Dexpreopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUIGoogle \
