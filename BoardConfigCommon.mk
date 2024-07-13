@@ -15,7 +15,7 @@
 #
 
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
-
+BUILD_BROKEN_DUP_RULES := true
 BOARD_VENDOR := xiaomi
 
 COMMON_PATH := device/xiaomi/sm6150-common
