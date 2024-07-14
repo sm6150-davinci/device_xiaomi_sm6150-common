@@ -30,6 +30,3 @@ ro.recovery.ui.margin_height=48
 
 # WiFi
 wifi.interface=wlan0
-
-# Disable vsync for cpu render apps
-debug.cpurend.vsync=false
