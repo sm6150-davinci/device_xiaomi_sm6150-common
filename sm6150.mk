@@ -116,6 +116,10 @@ PRODUCT_COPY_FILES += \
 # MIUICamera
 $(call inherit-product-if-exists, vendor/xiaomi/miuicamera/config.mk)
 
+# Device-specific settings
+PRODUCT_PACKAGES += \
+    XiaomiParts
+
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.composer@2.4-service \
