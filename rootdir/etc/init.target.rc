@@ -115,6 +115,9 @@ on boot
     chown system system /sys/devices/virtual/touch/touch_dev/double_tap
 
 
+    #Stop Statsd
+    stop statsd
+
 service vendor.pd_mapper /vendor/bin/pd-mapper
     class core
     user system
