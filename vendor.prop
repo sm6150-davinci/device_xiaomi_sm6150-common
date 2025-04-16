@@ -176,6 +176,8 @@ vendor.display.enable_null_display=0
 vendor.display.enable_optimize_refresh=1
 vendor.gralloc.disable_ubwc=0
 vendor.display.qdcm.mode_combine=1
+debug.sf.frame_rate_multiple_threshold=0.5
+debug.hwui.skip_empty_frames=true
 
 # Display - Set color mode to Adaptive by default
 persist.sys.sf.color_saturation=1.0
