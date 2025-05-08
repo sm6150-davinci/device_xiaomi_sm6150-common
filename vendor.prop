@@ -182,6 +182,12 @@ debug.hwui.skip_empty_frames=true
 ro.surface_flinger.set_touch_timer_ms=110
 debug.hwui.use_threaded_renderer=true
 
+
+# HWUI
+ro.hwui.render_ahead=4
+debug.hwui.use_hint_manager=true
+debug.hwui.target_cpu_time_percent=35
+
 # Display - Set color mode to Adaptive by default
 persist.sys.sf.color_saturation=1.0
 persist.sys.sf.native_mode=2
