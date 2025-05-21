@@ -181,6 +181,7 @@ debug.sf.frame_rate_multiple_threshold=0.5
 debug.hwui.skip_empty_frames=true
 ro.surface_flinger.set_touch_timer_ms=110
 debug.hwui.use_threaded_renderer=true
+ro.surface_flinger.support_kernel_idle_timer=true
 
 
 # HWUI
