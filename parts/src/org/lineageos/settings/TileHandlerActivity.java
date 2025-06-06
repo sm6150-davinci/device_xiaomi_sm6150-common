@@ -28,6 +28,8 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.lineageos.settings.bypasschrg.BypassChargingActivity;
+import org.lineageos.settings.bypasschrg.BypassChargingTile;
 import org.lineageos.settings.gamebar.GameBarSettingsActivity;
 import org.lineageos.settings.gamebar.GameBarTileService;
 
@@ -39,6 +41,7 @@ public final class TileHandlerActivity extends Activity {
 
     static {
         TILE_ACTIVITY_MAP.put(GameBarTileService.class.getName(), GameBarSettingsActivity.class);
+        TILE_ACTIVITY_MAP.put(BypassChargingTile.class.getName(), BypassChargingActivity.class);
     }
 
     @Override

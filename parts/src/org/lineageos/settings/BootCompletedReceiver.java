@@ -29,7 +29,7 @@ import org.lineageos.settings.gamebar.GameBar;
 import org.lineageos.settings.gamebar.GameBarMonitorService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     private static final String TAG = "XiaomiParts";
 
     @Override
