@@ -56,9 +56,7 @@
 
         <activity
             android:name=".charge.ChargeActivity"
-            android:exported="false"
-            android:label="@string/charge_bypass_title"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+            android:label="@string/charge_bypass_title">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
