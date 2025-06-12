@@ -60,12 +60,13 @@
             </intent-filter>
         </activity>
 
-      <!-- BypassCharging activity -->
-        <activity 
-        android:name=".bypasschrg.BypassChargingActivity"
-        android:exported="true"
-            android:label="@string/bypass_charging_title"
-            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- BypassCharging activity -->
+            <activity
+                android:name=".bypasschrg.BypassChargingActivity"
+                android:exported="true"
+                android:label="@string/bypass_charging_title"
+                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
+
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -75,7 +76,7 @@
             <meta-data
                 android:name="com.android.settings.summary"
                 android:resource="@string/bypass_charging_summary" />
-        </activity>
+        </activity>-->
 
         <!-- BypassChargingTile service -->
         <service
