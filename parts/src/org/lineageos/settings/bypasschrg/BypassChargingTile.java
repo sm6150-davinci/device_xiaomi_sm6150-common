@@ -20,6 +20,8 @@ import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 import org.lineageos.settings.R;
+import android.content.Intent;
+import org.lineageos.settings.bypasschrg.BypassChargingActivity;
 
 public class BypassChargingTile extends TileService {
 
@@ -41,12 +43,16 @@ public class BypassChargingTile extends TileService {
 
     @Override
     public void onClick() {
-        if (mEnabled == mBypassController.isBypassChargingEnabled()) {
-            mEnabled = !mEnabled;
-            updateTileState();
-            mBypassController.toggleBypassCharging(mEnabled);
-        }
+    if (isLocked()) {
+        unlockAndRun(() -> {
+            toggleBypass();
+            launchActivity();
+        });
+    } else {
+        toggleBypass();
+        launchActivity();
     }
+}
 
     private void updateTileState() {
         Tile tile = getQsTile();
@@ -57,4 +63,19 @@ public class BypassChargingTile extends TileService {
         tile.setContentDescription(getString(R.string.bypass_charging_summary));
         tile.updateTile();
     }
+    
+    private void toggleBypass() {
+    if (mEnabled == mBypassController.isBypassChargingEnabled()) {
+        mEnabled = !mEnabled;
+        updateTileState();
+        mBypassController.toggleBypassCharging(mEnabled);
+    }
+}
+
+private void launchActivity() {
+    Intent intent = new Intent(this, BypassChargingActivity.class);
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+    }
+
 }
