@@ -60,13 +60,11 @@
             </intent-filter>
         </activity>
 
-        <!-- BypassCharging activity -->
-            <activity
-                android:name=".bypasschrg.BypassChargingActivity"
-                android:exported="true"
-                android:label="@string/bypass_charging_title"
-                android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar" />
-
+        <activity
+            android:name=".charge.ChargeActivity"
+            android:exported="false"
+            android:label="@string/charge_bypass_title"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
@@ -75,23 +73,8 @@
                 android:value="com.android.settings.category.ia.battery" />
             <meta-data
                 android:name="com.android.settings.summary"
-                android:resource="@string/bypass_charging_summary" />
-        </activity>-->
-
-        <!-- BypassChargingTile service -->
-        <service
-            android:name=".bypasschrg.BypassChargingTile"
-            android:label="@string/bypass_charging_title"
-            android:icon="@drawable/ic_bypass_charging"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.service.quicksettings.TOGGLEABLE_TILE"
-                android:value="true" />
-        </service>
+                android:resource="@string/charge_bypass_summary" />
+        </activity>
 
         <!-- TileHandler activity -->
         <activity

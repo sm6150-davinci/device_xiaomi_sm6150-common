@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package org.lineageos.settings.bypasschrg;
+package org.lineageos.settings.charge;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.android.settingslib.collapsingtoolbar.CollapsingToolbarBaseActivity;
 
-public class BypassChargingActivity extends CollapsingToolbarBaseActivity {
+public class ChargeActivity extends CollapsingToolbarBaseActivity {
 
-    private static final String TAG_BYPASS_CHARGING_ACTIVITY = "bypass_charging_activity";
+    private static final String TAG_BYPASS_CHARGE = "bypass_charge";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,7 @@ public class BypassChargingActivity extends CollapsingToolbarBaseActivity {
 
         getFragmentManager().beginTransaction().replace(
                 com.android.settingslib.collapsingtoolbar.R.id.content_frame,
-                new BypassChargingSettings(), TAG_BYPASS_CHARGING_ACTIVITY).commit();
+                new ChargeSettingsFragment(), TAG_BYPASS_CHARGE).commit();
     }
 
     @Override
