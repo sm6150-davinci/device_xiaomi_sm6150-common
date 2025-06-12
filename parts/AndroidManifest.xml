@@ -23,9 +23,6 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
-
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
@@ -34,12 +31,9 @@
         android:persistent="true">
 
         <receiver android:name=".BootCompletedReceiver"
-                  android:exported="true"
-                  android:enabled="true"
-                  android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+                  android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
@@ -76,56 +70,5 @@
                 android:resource="@string/charge_bypass_summary" />
         </activity>
 
-        <!-- TileHandler activity -->
-        <activity
-            android:name=".TileHandlerActivity"
-            android:exported="true"
-            android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
-            </intent-filter>
-        </activity>
-
-        <!-- GameBar Overlay -->
-        <activity
-            android:name=".gamebar.GameBarSettingsActivity"
-            android:label="@string/game_bar_title"
-            android:theme="@style/Theme.SubSettingsBase"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.settings.action.IA_SETTINGS" />
-            </intent-filter>
-            <meta-data
-                android:name="com.android.settings.category"
-                android:value="com.android.settings.category.ia.apps" />
-            <meta-data
-                android:name="com.android.settings.summary"
-                android:resource="@string/game_bar_summary" />
-        </activity>
-
-        <!-- GameBar AppSelector -->
-        <activity android:name=".gamebar.GameBarAppSelectorActivity" />
-        <activity android:name=".gamebar.GameBarAppRemoverActivity" />
-
-        <!-- GameBar Overlay Tile Service -->
-        <service
-            android:name=".gamebar.GameBarTileService"
-            android:label="@string/game_bar_tile_label"
-            android:icon="@drawable/ic_gamebar"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-            <meta-data
-                android:name="android.service.quicksettings.TOGGLEABLE_TILE"
-                android:value="true" />
-        </service>
-
-        <!-- GameBar Overlay Monitor Service -->
-        <service
-            android:name=".gamebar.GameBarMonitorService"
-            android:exported="false" />
     </application>
 </manifest>
