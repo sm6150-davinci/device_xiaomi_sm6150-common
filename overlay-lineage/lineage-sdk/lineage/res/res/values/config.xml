@@ -23,4 +23,6 @@
         <item>restart_fastboot</item>
         <item>restart_bootloader</item>
     </string-array>
+    
+    <integer name="config_defaultChargingControlLimit">10</integer>
 </resources>
