@@ -23,7 +23,6 @@ import org.lineageos.settings.R;
 
 public class BypassChargingTile extends TileService {
 
-
     private BypassChargingController mBypassController;
     private boolean mEnabled;
 
@@ -41,11 +40,16 @@ public class BypassChargingTile extends TileService {
 
     @Override
     public void onClick() {
-        if (mEnabled == mBypassController.isBypassChargingEnabled()) {
-            mEnabled = !mEnabled;
-            updateTileState();
-            mBypassController.toggleBypassCharging(mEnabled);
-        }
+        // Read current state from controller to avoid desync
+        boolean currentlyEnabled = mBypassController.isBypassChargingEnabled();
+        boolean newState = !currentlyEnabled;
+
+        // Toggle the bypass charging state
+        mBypassController.toggleBypassCharging(newState);
+
+        // Update the local variable and the tile UI
+        mEnabled = newState;
+        updateTileState();
     }
 
     private void updateTileState() {
@@ -58,3 +62,4 @@ public class BypassChargingTile extends TileService {
         tile.updateTile();
     }
 }
+

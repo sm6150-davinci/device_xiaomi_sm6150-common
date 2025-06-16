@@ -19,38 +19,26 @@ package org.lineageos.settings.bypasschrg;
 
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Handler;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
-import androidx.preference.PreferenceManager;
 
 import org.lineageos.settings.R;
 import org.lineageos.settings.utils.FileUtils;
 
-/**
- * This class is implemented to coexist with Lineage Charging Control (CC).
- * Bypass Charging will override (disable) CC, while it's enabled.
- * CC status will be restored, when Bypass Charging is disabled.
- * Any user changes to CC settings, while Bypass Charging is enabled,
- * will override Bypass Charging settings.
- */
 public class BypassChargingController {
 
     private static final boolean DEBUG = false;
 
     private static final String TAG = "BypassChargingController";
     private static final String BYPASS_CHARGING_NODE = "/sys/class/power_supply/battery/input_suspend";
-    private static final String KEY_BYPASS_CHARGING_ENABLED = "bypass_charging_enabled";
 
-    // Bypass modes
     private static final String BYPASS_CHARGING_ENABLED = "0";
     private static final String BYPASS_CHARGING_DISABLED = "1";
 
-    // From Lineage HealthInterface
     private static final int MODE_AUTO = 1;
     private static final int MODE_LIMIT = 3;
 
@@ -58,7 +46,6 @@ public class BypassChargingController {
     private static final int CC_LIMIT_MAX = 100;
     private static final int CC_LIMIT_DEF = 80;
 
-    // Charging Control settings
     private static final String KEY_CHARGING_CONTROL_ENABLED = "charging_control_enabled";
     private static final String KEY_CHARGING_CONTROL_MODE = "charging_control_mode";
     private static final String KEY_CHARGING_CONTROL_LIMIT = "charging_control_charging_limit";
@@ -90,6 +77,11 @@ public class BypassChargingController {
             }
         }
     };
+
+    // Temporary state backups during bypass activation
+    private int mOriginalChargingLimit = -1;
+    private int mOriginalChargingMode = -1;
+    private boolean mOriginalChargingControlEnabled = false;
 
     public boolean isBypassChargingSupported() {
         return isNodeAccessible(BYPASS_CHARGING_NODE);
@@ -128,13 +120,16 @@ public class BypassChargingController {
     public void toggleBypassCharging(boolean enable) {
         if (enable) {
             enableBypassCharging();
-        }
-        else {
+        } else {
             disableBypassCharging();
         }
     }
 
     private void enableBypassCharging() {
+        mOriginalChargingLimit = getChargingControlLimit();
+        mOriginalChargingMode = getChargingControlMode();
+        mOriginalChargingControlEnabled = isChargingControlEnabled();
+
         setChargingControlEnabled(true);
         setChargingControlMode(MODE_LIMIT);
         setChargingControlLimit(CC_LIMIT_MIN);
@@ -142,42 +137,20 @@ public class BypassChargingController {
     }
 
     public void disableBypassCharging() {
-        setChargingControlLimit(CC_LIMIT_DEF);
-        setChargingControlMode(MODE_AUTO);
-        setChargingControlEnabled(false);
+        if (mOriginalChargingLimit != -1) {
+            setChargingControlLimit(mOriginalChargingLimit);
+        } else {
+            setChargingControlLimit(CC_LIMIT_DEF);
+        }
+
+        if (mOriginalChargingMode != -1) {
+            setChargingControlMode(mOriginalChargingMode);
+        } else {
+            setChargingControlMode(MODE_AUTO);
+        }
+
+        setChargingControlEnabled(mOriginalChargingControlEnabled);
         writeToNode(BYPASS_CHARGING_DISABLED);
-    }
-
-    private void saveBypassChargingEnabled(boolean enabled) {
-        PreferenceManager.getDefaultSharedPreferences(mContext)
-                .edit()
-                .putBoolean(KEY_BYPASS_CHARGING_ENABLED, enabled)
-                .commit();
-    }
-
-    private boolean isSavedBypassChargingEnabled() {
-        return PreferenceManager.getDefaultSharedPreferences(mContext)
-                .getBoolean(KEY_BYPASS_CHARGING_ENABLED, false);
-    }
-
-    private void backupChargingControlSettings() {
-        PreferenceManager.getDefaultSharedPreferences(mContext)
-                .edit()
-                .putInt(KEY_CHARGING_CONTROL_MODE, getChargingControlMode())
-                .putInt(KEY_CHARGING_CONTROL_LIMIT, getChargingControlLimit())
-                .putBoolean(KEY_CHARGING_CONTROL_ENABLED, isChargingControlEnabled())
-                .commit();
-    }
-
-    private void restoreChargingControlSettings() {
-        SharedPreferences sharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(mContext);
-        setChargingControlMode(sharedPreferences.getInt(
-                KEY_CHARGING_CONTROL_LIMIT, CC_LIMIT_DEF));
-        setChargingControlMode(sharedPreferences.getInt(
-                KEY_CHARGING_CONTROL_MODE, MODE_AUTO));
-        setChargingControlEnabled(sharedPreferences.getBoolean(
-                KEY_CHARGING_CONTROL_ENABLED, false));
     }
 
     private boolean isChargingControlEnabled() {
@@ -218,3 +191,4 @@ public class BypassChargingController {
                 Toast.LENGTH_LONG).show();
     }
 }
+
