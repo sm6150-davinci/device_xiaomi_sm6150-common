@@ -421,3 +421,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     firmware_wlan_mac.bin_symlink \
     firmware_WCNSS_qcom_cfg.ini_symlink
+    
+    PRODUCT_PROPERTY_OVERRIDES += \
+    debug.sf.enable_frame_throttling=true \
+    debug.sf.max_queued_buffers=3 \
+    debug.sf.render_ahead=1 \
+    debug.hwui.render_ahead=1
