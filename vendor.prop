@@ -188,12 +188,13 @@ debug.hwui.skip_empty_frames=true
 ro.surface_flinger.set_touch_timer_ms=110
 debug.hwui.use_threaded_renderer=true
 ro.surface_flinger.support_kernel_idle_timer=true
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 
 
 # HWUI
 #ro.hwui.render_ahead=2
 debug.hwui.use_hint_manager=true
-debug.hwui.target_cpu_time_percent=25
+debug.hwui.target_cpu_time_percent=30
 vendor.display.enable_perf_hint_large_comp_cycle=1
 
 # Display - Set color mode to Adaptive by default
