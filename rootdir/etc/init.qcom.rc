@@ -309,21 +309,21 @@ service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
     onrestart restart audioserver
     
 service surfaceflinger /system/bin/surfaceflinger
-    class mainAdd commentMore actions
+    class main
     user system
     group graphics drmrpc
     capabilities SYS_NICE
     task_profiles ProcessCapacityHigh HighPerformance
     
-service vendor.qti.hardware.display.composer /vendor/bin/hw/vendor.qti.hardware.display.composer-service
+service vendor.hwcomposer-2-4 /vendor/bin/hw/android.hardware.graphics.composer@2.4-service
     override
     class hal animation
     user system
     group graphics drmrpc
     capabilities SYS_NICE
     onrestart restart surfaceflinger
-    socket pps stream 0660 system system
     task_profiles ProcessCapacityHigh HighPerformance
+
     
 service vendor.qti.hardware.display.allocator /vendor/bin/hw/vendor.qti.hardware.display.allocator-service
     override
